@@ -33,7 +33,7 @@ public class RegularFish : Fish
             }
     }
 
-    new void Update()
+    void Update()
     {
         if (ShouldTurnAround())
         {

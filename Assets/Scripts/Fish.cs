@@ -8,7 +8,7 @@ public abstract class Fish : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public Rigidbody2D rigidbody;
+    protected Rigidbody2D rigidbody;
 
     public int EatingRadius = 20;
 
@@ -16,7 +16,7 @@ public abstract class Fish : MonoBehaviour
 
     [SerializeField] protected FoodType PreferredFood = FoodType.Regular;
 
-    public List<GameObject> FoodList = new List<GameObject>();
+    protected List<GameObject> FoodList = new List<GameObject>();
 
     public float speed = 3.0f;
 
