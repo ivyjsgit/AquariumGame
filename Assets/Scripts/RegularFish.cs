@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+//using System;
 
 public class RegularFish : Fish
 {
@@ -38,7 +39,6 @@ public class RegularFish : Fish
         {
             isFacingLeft = !isFacingLeft;
         }
-        Debug.Log($"Current facing {GetFacing()}");
         MoveFish();
         ControlSpriteFacing();
 
@@ -59,15 +59,14 @@ public class RegularFish : Fish
     protected override void ControlSpriteFacing()
     {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (GetFacing() == Vector3.right && spriteRenderer.flipX == false)
+        //Flip sprite
+        if (GetFacing() == Vector3.right)
         {
-            spriteRenderer.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
-
-        else if(GetFacing() == Vector3.left && spriteRenderer.flipX == true)
+        else
         {
-            spriteRenderer.flipX = false;
-
+            transform.rotation = Quaternion.identity;
         }
     }
 
@@ -77,10 +76,12 @@ public class RegularFish : Fish
 
         if(currentDirection.x <= 0)
         {
+            Debug.Log("Left");
             return Vector3.left;
         }
         else
         {
+            Debug.Log("Right");
             return Vector3.right;
         }
     }
