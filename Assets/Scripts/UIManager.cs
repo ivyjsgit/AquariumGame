@@ -6,6 +6,7 @@ using UnityEngine;
 public class UIManager : Singleton<UIManager>
 {
     public TextMeshProUGUI ScoreText;
+    public string MoneyPrefix = "Money: ";
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,6 @@ public class UIManager : Singleton<UIManager>
     // Update is called once per frame
     void Update()
     {
-        ScoreText.text = $"Fishbucks: {MoneyManager.Instance.GetMoney()}";
+        ScoreText.text = $"{MoneyPrefix}{MoneyManager.Instance.GetMoney()}";
     }
 }

@@ -16,7 +16,7 @@ public class RegularFish : Fish
 
     protected override void MoveFish()
     {
-            if (rigidbody != null && !MovingTowardsFood)
+            if (GetComponent<Rigidbody2D>() != null && !MovingTowardsFood)
             {
                 Vector2 newPosition = transform.position;
                 if (isFacingLeft)
@@ -39,6 +39,7 @@ public class RegularFish : Fish
         {
             isFacingLeft = !isFacingLeft;
         }
+        //MoveFish();
         base.Update();
     }
     protected override IEnumerator SelectDirection()

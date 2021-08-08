@@ -8,7 +8,7 @@ public abstract class Fish : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    protected Rigidbody2D rigidbody;
+    //protected Rigidbody2D fishRigidBody;
 
     public int EatingRadius = 20;
 
@@ -29,7 +29,7 @@ public abstract class Fish : MonoBehaviour
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        //fishRigidBody = GetComponent<Rigidbody2D>();
         StartCoroutine(SelectDirection());
 
         StartCoroutine(MoveToAndEat());
