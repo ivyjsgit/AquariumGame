@@ -15,13 +15,20 @@ public class RegularFish : Fish
     public float minCoinWaitTime = 3.0f;
     public float maxCoinWaitTime = 10.0f;
 
+    public Rigidbody2D rigidbody2D;
+
+
     private Vector3 previousPosition = Vector3.zero;
 
-
+    new void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        base.Start();
+    }
 
     protected override void MoveFish()
     {
-            if (GetComponent<Rigidbody2D>() != null && !MovingTowardsFood)
+            if (rigidbody2D != null && !MovingTowardsFood)
             {
                 Vector2 newPosition = transform.position;
                 if (isFacingLeft)

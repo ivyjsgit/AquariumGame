@@ -29,7 +29,7 @@ public abstract class Fish : MonoBehaviour
     public int happiness = 100;
 
 
-    void Start()
+    protected void Start()
     {
         //fishRigidBody = GetComponent<Rigidbody2D>();
         StartCoroutine(SelectDirection());
@@ -75,7 +75,7 @@ public abstract class Fish : MonoBehaviour
 
     protected bool ShouldTurnAround()
     {
-        return transform.position.x <= -9.5f || transform.position.x >= 9.5f;
+        return transform.position.x <= -10.85f || transform.position.x >= 10.85f;
     }
 
     protected IEnumerator MoveToAndEat()
@@ -93,7 +93,7 @@ public abstract class Fish : MonoBehaviour
 
             }
 
-            yield return new WaitForSeconds(2.0f); 
+            yield return new WaitForEndOfFrame();
         }
     }
 
