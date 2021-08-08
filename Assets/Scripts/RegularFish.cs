@@ -33,15 +33,13 @@ public class RegularFish : Fish
             }
     }
 
-    void Update()
+    new void Update()
     {
         if (ShouldTurnAround())
         {
             isFacingLeft = !isFacingLeft;
         }
-        MoveFish();
-        ControlSpriteFacing();
-
+        base.Update();
     }
     protected override IEnumerator SelectDirection()
     {
@@ -76,12 +74,10 @@ public class RegularFish : Fish
 
         if(currentDirection.x <= 0)
         {
-            Debug.Log("Left");
             return Vector3.left;
         }
         else
         {
-            Debug.Log("Right");
             return Vector3.right;
         }
     }

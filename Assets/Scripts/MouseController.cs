@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MouseController : MonoBehaviour
+public class MouseController : Singleton<MouseController>
 {
     // Start is called before the first frame update
 

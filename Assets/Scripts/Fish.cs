@@ -36,13 +36,28 @@ public abstract class Fish : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
+    protected void Update() {
 
         time += Time.deltaTime / timeToReachTarget;
 
         MoveFish();
         ControlSpriteFacing();
     }
+
+    /*
+     * 
+     *     void Update()
+    {
+        if (ShouldTurnAround())
+        {
+            isFacingLeft = !isFacingLeft;
+        }
+        MoveFish();
+        ControlSpriteFacing();
+
+    }
+     */
+
 
     protected abstract void MoveFish();
     protected abstract IEnumerator SelectDirection();
@@ -172,11 +187,9 @@ public abstract class Fish : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Food"))       
         {
-            Debug.Log("Touching food!");
             Food foodObject = collision.gameObject.GetComponent<Food>();
             if (IsFoodPreferred(foodObject))
             {
-                Debug.Log("Touching Preferred food!");
                 Destroy(collision.gameObject);
             }
         }
