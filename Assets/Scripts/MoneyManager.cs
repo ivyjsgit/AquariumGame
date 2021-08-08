@@ -5,6 +5,9 @@ using UnityEngine;
 public class MoneyManager : Singleton<MoneyManager>
 {
     private int money = 0;
+
+    public List<Money> Denominations;
+
     // Start is called before the first frame update
     void Start()
     {

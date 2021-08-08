@@ -26,6 +26,8 @@ public abstract class Fish : MonoBehaviour
 
     float timeToReachTarget;
 
+    public int happiness = 100;
+
 
     void Start()
     {
@@ -33,6 +35,8 @@ public abstract class Fish : MonoBehaviour
         StartCoroutine(SelectDirection());
 
         StartCoroutine(MoveToAndEat());
+
+        StartCoroutine(DropCoins());
     }
 
     // Update is called once per frame
@@ -197,8 +201,5 @@ public abstract class Fish : MonoBehaviour
 
     protected abstract void ControlSpriteFacing();
 
-    protected void DropCoins()
-    {
-
-    }
+    protected abstract IEnumerator DropCoins();
 }
