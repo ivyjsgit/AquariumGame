@@ -655,6 +655,7 @@ GameObject:
   - component: {fileID: 2058954179}
   - component: {fileID: 2058954178}
   - component: {fileID: 2058954177}
+  - component: {fileID: 2058954181}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -677,6 +678,7 @@ MonoBehaviour:
   rigidbody: {fileID: 0}
   EatingRadius: 6
   MinEatingRadius: 1
+  PreferredFood: 0
   FoodList: []
   speed: 3
   isFacingLeft: 1
@@ -743,7 +745,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
+  m_Sprite: {fileID: -3651226936727273156, guid: 471b45ee960e34100a087be5b6b581ce, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -763,11 +765,98 @@ Transform:
   m_GameObject: {fileID: 2058954176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &2058954181
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058954176}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.162057, y: 4.0699997}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 3.589679, y: -1.4243555}
+      - {x: 3.5574524, y: -1.1504297}
+      - {x: 3.5091126, y: -0.7153711}
+      - {x: 3.4607728, y: -0.2641992}
+      - {x: 3.4446595, y: -0.0063866973}
+      - {x: 3.4285462, y: 0.009726584}
+      - {x: 3.4285462, y: 1.9110937}
+      - {x: 3.412433, y: 1.9594336}
+      - {x: 3.3157532, y: 2.04}
+      - {x: 3.1062806, y: 2.04}
+      - {x: 2.896808, y: 2.0077734}
+      - {x: 2.671222, y: 1.8788671}
+      - {x: 2.445636, y: 1.6855078}
+      - {x: 2.1717103, y: 1.411582}
+      - {x: 2.042804, y: 1.2665625}
+      - {x: 1.9461242, y: 1.1376562}
+      - {x: 1.6077453, y: 0.6703711}
+      - {x: 1.4949523, y: 0.55757815}
+      - {x: 1.0437804, y: -0.0063866973}
+      - {x: 0.9793273, y: -0.15140623}
+      - {x: 0.7537414, y: 0.058066428}
+      - {x: 0.38313594, y: 0.31587893}
+      - {x: -0.21305546, y: 0.73482424}
+      - {x: -0.7447938, y: 1.0893164}
+      - {x: -1.2120789, y: 1.2826757}
+      - {x: -1.4215516, y: 1.3149023}
+      - {x: -1.8566102, y: 1.298789}
+      - {x: -2.082196, y: 1.2021093}
+      - {x: -2.3883483, y: 0.99263674}
+      - {x: -2.5172546, y: 0.89595705}
+      - {x: -2.9845397, y: 0.44478518}
+      - {x: -3.290692, y: 0.18697268}
+      - {x: -3.5001647, y: -0.022499979}
+      - {x: -3.5807312, y: -0.21585935}
+      - {x: -3.5807312, y: -0.48978513}
+      - {x: -3.5646179, y: -0.6670312}
+      - {x: -3.4679382, y: -0.81205076}
+      - {x: -3.290692, y: -0.98929685}
+      - {x: -3.0812194, y: -1.1343164}
+      - {x: -2.8556335, y: -1.2632227}
+      - {x: -2.372235, y: -1.5371485}
+      - {x: -2.082196, y: -1.6499414}
+      - {x: -1.8727235, y: -1.6982813}
+      - {x: -1.7760438, y: -1.7143946}
+      - {x: -0.8253602, y: -1.7143946}
+      - {x: -0.45475468, y: -1.6499414}
+      - {x: -0.32584843, y: -1.6016016}
+      - {x: -0.116375774, y: -1.5532618}
+      - {x: 0.4314758, y: -1.2471094}
+      - {x: 0.78596795, y: -0.9731836}
+      - {x: 1.1243469, y: -1.1826563}
+      - {x: 1.478839, y: -1.3599024}
+      - {x: 1.6238586, y: -1.4404688}
+      - {x: 1.9783508, y: -1.6499414}
+      - {x: 2.1717103, y: -1.7466211}
+      - {x: 2.3972962, y: -1.8433008}
+      - {x: 2.5423157, y: -1.8755274}
+      - {x: 2.7679017, y: -2.0044336}
+      - {x: 2.848468, y: -2.0366602}
+      - {x: 3.5091126, y: -2.0366602}
+      - {x: 3.6057923, y: -1.907754}
+      - {x: 3.6057923, y: -1.794961}
 --- !u!1001 &7078328547797396469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -775,17 +864,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3041251996603248766, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
+      propertyPath: m_GravityScale
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008465489185297453, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7078328546805530776, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7078328546805530776, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078328546805530776, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078328546805530776, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.93
+      value: 3.1976
       objectReference: {fileID: 0}
     - target: {fileID: 7078328546805530776, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.7006
       objectReference: {fileID: 0}
     - target: {fileID: 7078328546805530776, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -819,6 +924,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7078328546805530777, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -861682406816174103, guid: 471b45ee960e34100a087be5b6b581ce, type: 3}
     - target: {fileID: 7078328546805530782, guid: de8da86d31eb942569dc6bfa8e77c3ef, type: 3}
       propertyPath: m_Name
       value: Food

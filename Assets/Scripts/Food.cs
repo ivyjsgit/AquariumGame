@@ -10,7 +10,6 @@ public class Food : MonoBehaviour
     public float TimeAlive = 0.0f;
     public float DespawnTime = 5.0f;
 
-
     private float StartTime;
 
 

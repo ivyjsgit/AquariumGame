@@ -14,6 +14,8 @@ public abstract class Fish : MonoBehaviour
 
     public int MinEatingRadius = 1;
 
+    [SerializeField] protected FoodType PreferredFood = FoodType.Regular;
+
     public List<GameObject> FoodList = new List<GameObject>();
 
     public float speed = 3.0f;
@@ -39,6 +41,7 @@ public abstract class Fish : MonoBehaviour
         time += Time.deltaTime / timeToReachTarget;
 
         MoveFish();
+        ControlSpriteFacing();
     }
 
     protected abstract void MoveFish();
@@ -60,13 +63,13 @@ public abstract class Fish : MonoBehaviour
     {
         for (; ; )
         {
-                FoodList= GameObject.FindGameObjectsWithTag("Food").ToList();
+            FoodList= GameObject.FindGameObjectsWithTag("Food").ToList();
             if (FoodList.Count > 0)
             {
-                GameObject nearestFood = FindNearestGameObject(FoodList);
+                Food nearestFood = FindNearestPreferredFood(FoodList);
                 if (!MovingTowardsFood)
                 {
-                    StartCoroutine(MoveToTarget(nearestFood, 2.0f));
+                    StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
                 }
 
             }
@@ -112,16 +115,77 @@ public abstract class Fish : MonoBehaviour
 
         foreach(GameObject g in gameObjects)
         {
-            float AbsolutePositionChange = GetGameObjectDistance(g);
-
-            if (AbsolutePositionChange < distance)
+            if(g != null)
             {
-                distance = AbsolutePositionChange;
-                nearest = g;
+                float AbsolutePositionChange = GetGameObjectDistance(g);
+
+                if (AbsolutePositionChange < distance)
+                {
+                    distance = AbsolutePositionChange;
+                    nearest = g;
+                }
             }
         }
 
         return nearest;
     }
 
+    private Food FindNearestPreferredFood(List<GameObject> gameObjects)
+    {
+        List<Food> foodList= gameObjects.Select(go => go.GetComponent<Food>()).ToList();
+        List<Food> PreferredFoodList = foodList.ToList();
+        //PreferredFoodList.AddRange(foodList);
+
+
+        foreach(Food food in foodList)
+        {
+            if (!IsFoodPreferred(food))
+            {
+                PreferredFoodList.Remove(food);
+            }
+        }
+        List<GameObject> PrefFoodListAsGO = PreferredFoodList.Select(food => food.gameObject).ToList();
+        return FindNearestGameObject(PrefFoodListAsGO).GetComponent<Food>();
+
+    }
+
+
+    protected bool IsFoodPreferred(Food food)
+    {
+        FoodType? CurrentFoodType = null;
+        if(food is PlainFood)
+        {
+            CurrentFoodType = FoodType.Regular;
+        }
+        if (CurrentFoodType != null)
+        {
+            return CurrentFoodType == PreferredFood;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Food"))       
+        {
+            Debug.Log("Touching food!");
+            Food foodObject = collision.gameObject.GetComponent<Food>();
+            if (IsFoodPreferred(foodObject))
+            {
+                Debug.Log("Touching Preferred food!");
+                Destroy(collision.gameObject);
+            }
+        }
+    }
+
+    protected abstract void ControlSpriteFacing();
+
+    protected void DropCoins()
+    {
+
+    }
 }
