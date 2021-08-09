@@ -12,7 +12,7 @@ public abstract class Fish : MonoBehaviour
 
 
 
-    [SerializeField] protected FoodType PreferredFood = FoodType.Regular;
+    [SerializeField] public FoodType PreferredFood = FoodType.Regular;
 
 
     public float speed = 3.0f;
@@ -26,14 +26,14 @@ public abstract class Fish : MonoBehaviour
     public Rigidbody2D rigidbody2D;
 
     //Movement based stuff
-    protected bool isFacingLeft = true;
+    public bool isFacingLeft = true;
 
     //Um, Vector3's can't be nullable, so you have to use nullable syntax for this.
     protected Vector3? previousPosition;
 
 
     protected bool MovingTowardsFood = false;
-    protected List<GameObject> FoodList = new List<GameObject>();
+    public List<GameObject> FoodList = new List<GameObject>();
     public int EatingRadius = 20;
     public int MinEatingRadius = 1;
 
@@ -48,8 +48,10 @@ public abstract class Fish : MonoBehaviour
         StartCoroutine(SelectDirection());
 
         StartCoroutine(MoveToAndEat());
-
-        StartCoroutine(DropCoins());
+        if(PreferredFood != FoodType.Cannibal)
+        {
+            StartCoroutine(DropCoins());
+        }
     }
 
     // Update is called once per frame
@@ -67,7 +69,7 @@ public abstract class Fish : MonoBehaviour
 
 
 
-    protected void MoveFish()
+    protected virtual void MoveFish()
     {
         if (rigidbody2D != null && !MovingTowardsFood)
         {
@@ -88,7 +90,7 @@ public abstract class Fish : MonoBehaviour
 
 
 
-    protected  IEnumerator SelectDirection()
+    protected  virtual IEnumerator SelectDirection()
     {
         for (; ; )
         {
@@ -113,7 +115,7 @@ public abstract class Fish : MonoBehaviour
         return transform.position.x <= -10.85f || transform.position.x >= 10.85f;
     }
 
-    protected IEnumerator MoveToAndEat()
+    protected virtual IEnumerator MoveToAndEat()
     {
         for (; ; )
         {
@@ -133,7 +135,7 @@ public abstract class Fish : MonoBehaviour
     }
 
     //This needs to be fixed
-    protected IEnumerator MoveToTarget(GameObject OurGameObject, float distance)
+    protected virtual IEnumerator MoveToTarget(GameObject OurGameObject, float distance)
     {
         MovingTowardsFood = true;
         float ObjectDistance = GetGameObjectDistance(OurGameObject);
@@ -142,6 +144,7 @@ public abstract class Fish : MonoBehaviour
         while (OurGameObject != null &&  ObjectDistance < EatingRadius && ObjectDistance > MinEatingRadius)
         {
             float step = speed * Time.deltaTime;
+            previousPosition = transform.position;
             transform.position = Vector2.MoveTowards(transform.position, OurGameObject.transform.position, speed*Time.deltaTime) ;
             yield return new WaitForEndOfFrame();
             ObjectDistance = GetGameObjectDistance(OurGameObject);
@@ -162,7 +165,7 @@ public abstract class Fish : MonoBehaviour
 
     }
 
-    private GameObject FindNearestGameObject(List<GameObject> gameObjects)
+    protected GameObject FindNearestGameObject(List<GameObject> gameObjects)
     {
         GameObject nearest = null;
         float distance = Mathf.Infinity;
@@ -265,7 +268,14 @@ public abstract class Fish : MonoBehaviour
         }
         else
         {
-            return Vector3.left;
+            if (isFacingLeft)
+            {
+                return Vector3.left;
+            }
+            else
+            {
+                return Vector3.right;
+            }
         }
 
     }

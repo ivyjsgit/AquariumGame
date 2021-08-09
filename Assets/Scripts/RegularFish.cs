@@ -48,15 +48,19 @@ public class RegularFish : Fish
     //    }
     //}
 
+    //protected override IEnumerator DropCoins()
+    //{
+    //    throw new System.NotImplementedException();
+    //}
 
     protected override IEnumerator DropCoins()
     {
-        for(; ; )
+        for (; ; )
         {
             List<Money> CoinsToSpawn = new List<Money>();
             yield return new WaitForSeconds(Random.Range(minCoinWaitTime, maxCoinWaitTime));
 
-            var Score = happiness + Random.Range(-5,50);
+            var Score = happiness + Random.Range(-5, 50);
 
             Debug.Log($"Score{Score}");
 
@@ -64,7 +68,8 @@ public class RegularFish : Fish
             if (Score >= 130)
             {
                 CoinsToSpawn.Add(MoneyManager.Instance.Denominations[2]);
-            }else if(Score>= 110)
+            }
+            else if (Score >= 110)
             {
                 CoinsToSpawn.Add(MoneyManager.Instance.Denominations[1]);
             }
@@ -75,7 +80,7 @@ public class RegularFish : Fish
 
             foreach (Money coin in CoinsToSpawn)
             {
-                Vector3 PositionToSpawn = new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z);
+                Vector3 PositionToSpawn = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
                 Instantiate(coin, PositionToSpawn, transform.rotation);
             }
 
