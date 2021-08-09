@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MoneyManager : Singleton<MoneyManager>
 {
-    private int money = 0;
+    [SerializeField] private int money = 0;
 
     public List<Money> Denominations;
 

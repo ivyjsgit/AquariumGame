@@ -24,7 +24,9 @@ public class MouseController : Singleton<MouseController>
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = 2.0f;       // we want 2m away from the camera position
             Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
-            RaycastHit2D hit = Physics2D.Raycast(objectPos, Vector3.zero, Mathf.Infinity);
+            RaycastHit2D hit = Physics2D.Raycast(objectPos, Vector2.zero);
+            Debug.DrawRay(objectPos, Vector3.zero, Color.red);
+            
             if (hit.collider == null)
             {
                 Instantiate(food, objectPos, Quaternion.identity);

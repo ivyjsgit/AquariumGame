@@ -10,7 +10,7 @@ public class BuyFishButton : MonoBehaviour
     public int cost;
     public TextMeshProUGUI CostLabel;
     private Button button;
-
+    
     void Start()
     {
         button = GetComponent<Button>();
