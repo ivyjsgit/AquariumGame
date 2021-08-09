@@ -10,28 +10,41 @@ public abstract class Fish : MonoBehaviour
 
     //protected Rigidbody2D fishRigidBody;
 
-    public int EatingRadius = 20;
 
-    public int MinEatingRadius = 1;
 
     [SerializeField] protected FoodType PreferredFood = FoodType.Regular;
 
-    protected List<GameObject> FoodList = new List<GameObject>();
 
     public float speed = 3.0f;
 
-    protected bool MovingTowardsFood = false;
 
     float time;
 
     float timeToReachTarget;
 
     public int happiness = 100;
+    public Rigidbody2D rigidbody2D;
 
+    //Movement based stuff
+    protected bool isFacingLeft = true;
+
+    //Um, Vector3's can't be nullable, so you have to use nullable syntax for this.
+    protected Vector3? previousPosition;
+
+
+    protected bool MovingTowardsFood = false;
+    protected List<GameObject> FoodList = new List<GameObject>();
+    public int EatingRadius = 20;
+    public int MinEatingRadius = 1;
+
+    public float minWaitTime;
+    public float maxWaitTime;
 
     protected void Start()
     {
-        //fishRigidBody = GetComponent<Rigidbody2D>();
+        previousPosition = null;
+
+        rigidbody2D = GetComponent<Rigidbody2D>();
         StartCoroutine(SelectDirection());
 
         StartCoroutine(MoveToAndEat());
@@ -44,27 +57,49 @@ public abstract class Fish : MonoBehaviour
 
         time += Time.deltaTime / timeToReachTarget;
 
-        MoveFish();
         ControlSpriteFacing();
-    }
-
-    /*
-     * 
-     *     void Update()
-    {
+        MoveFish();
         if (ShouldTurnAround())
         {
             isFacingLeft = !isFacingLeft;
         }
-        MoveFish();
-        ControlSpriteFacing();
-
     }
-     */
 
 
-    protected abstract void MoveFish();
-    protected abstract IEnumerator SelectDirection();
+
+    protected void MoveFish()
+    {
+        if (rigidbody2D != null && !MovingTowardsFood)
+        {
+            Vector2 newPosition = transform.position;
+            if (isFacingLeft)
+            {
+                newPosition.x += (-Vector3.right * speed * Time.deltaTime).x;
+            }
+            else
+            {
+                newPosition.x += (Vector3.right * speed * Time.deltaTime).x;
+            }
+            previousPosition = transform.position;
+
+            transform.position = (newPosition);
+        }
+    }
+
+
+
+    protected  IEnumerator SelectDirection()
+    {
+        for (; ; )
+        {
+            if (!ShouldTurnAround())
+            {
+                isFacingLeft = (Random.value > 0.5);
+            }
+            yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
+
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {
@@ -199,7 +234,41 @@ public abstract class Fish : MonoBehaviour
         }
     }
 
-    protected abstract void ControlSpriteFacing();
+    protected void ControlSpriteFacing()
+    {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        //Flip sprite
+        if (GetFacing() == Vector3.right)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.identity;
+        }
+    }
+
+    private Vector3 GetFacing()
+    {
+        if (previousPosition != null)
+        {
+            Vector3 currentDirection = (transform.position - previousPosition.Value).normalized;
+
+            if (currentDirection.x <= 0)
+            {
+                return Vector3.left;
+            }
+            else
+            {
+                return Vector3.right;
+            }
+        }
+        else
+        {
+            return Vector3.left;
+        }
+
+    }
 
     protected abstract IEnumerator DropCoins();
 }

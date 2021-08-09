@@ -8,92 +8,46 @@ public class RegularFish : Fish
 {
     // Use this for initialization
 
-    public bool isFacingLeft = true;
-    public float minWaitTime = 0.5f;
-    public float maxWaitTime = 10f;
+    //public bool isFacingLeft = true;
+    //public float minWaitTime = 0.5f;
+    //public float maxWaitTime = 10f;
 
     public float minCoinWaitTime = 3.0f;
     public float maxCoinWaitTime = 10.0f;
 
-    public Rigidbody2D rigidbody2D;
+    //public Rigidbody2D rigidbody2D;
 
 
-    private Vector3 previousPosition = Vector3.zero;
+    //private Vector3 previousPosition = Vector3.zero;
 
-    new void Start()
-    {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        base.Start();
-    }
+    //new void Start()
+    //{
+    //    rigidbody2D = GetComponent<Rigidbody2D>();
+    //    base.Start();
+    //}
 
-    protected override void MoveFish()
-    {
-            if (rigidbody2D != null && !MovingTowardsFood)
-            {
-                Vector2 newPosition = transform.position;
-                if (isFacingLeft)
-                {
-                    newPosition.x += (-Vector3.right * speed * Time.deltaTime).x;
-                }
-                else
-                {
-                    newPosition.x += (Vector3.right * speed * Time.deltaTime).x;
-                }
-                previousPosition = transform.position;
+    //new void Update()
+    //{
+    //    //if (ShouldTurnAround())
+    //    //{
+    //    //    isFacingLeft = !isFacingLeft;
+    //    //}
+    //    ////MoveFish();
+    //    //base.Update();
+    //}
+    //protected override IEnumerator SelectDirection()
+    //{
+    //    for(; ; )
+    //    {
+    //        if (!ShouldTurnAround())
+    //        {
+    //            isFacingLeft = (Random.value > 0.5);
+    //        }
+    //        yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
 
-                transform.position = (newPosition);
-            }
-    }
+    //    }
+    //}
 
-    new void Update()
-    {
-        if (ShouldTurnAround())
-        {
-            isFacingLeft = !isFacingLeft;
-        }
-        //MoveFish();
-        base.Update();
-    }
-    protected override IEnumerator SelectDirection()
-    {
-        for(; ; )
-        {
-            if (!ShouldTurnAround())
-            {
-                isFacingLeft = (Random.value > 0.5);
-            }
-            yield return new WaitForSeconds(Random.Range(minWaitTime, maxWaitTime));
-
-        }
-    }
-
-    protected override void ControlSpriteFacing()
-    {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        //Flip sprite
-        if (GetFacing() == Vector3.right)
-        {
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
-        else
-        {
-            transform.rotation = Quaternion.identity;
-        }
-    }
-
-    private Vector3 GetFacing()
-    {
-        Vector3 currentDirection = (transform.position - previousPosition).normalized;
-
-        if(currentDirection.x <= 0)
-        {
-            return Vector3.left;
-        }
-        else
-        {
-            return Vector3.right;
-        }
-    }
 
     protected override IEnumerator DropCoins()
     {
