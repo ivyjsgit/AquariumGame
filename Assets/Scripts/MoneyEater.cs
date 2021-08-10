@@ -17,22 +17,16 @@ public class MoneyEater : Fish
         yield return new WaitForEndOfFrame();
     }
 
-    protected override IEnumerator MoveToAndEat()
+    protected override void MoveToFood()
     {
-        for (; ; )
+        FoodList = GameObject.FindGameObjectsWithTag("Money").ToList();
+        if (FoodList.Count > 0)
         {
-            FoodList = GameObject.FindGameObjectsWithTag("Money").ToList();
-            if (FoodList.Count > 0)
+            Money nearestFood = FindNearestMoney(FoodList);
+            if (!MovingTowardsFood)
             {
-                Money nearestFood = FindNearestMoney(FoodList);
-                if (!MovingTowardsFood)
-                {
-                    StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
-                }
-
+                StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
             }
-
-            yield return new WaitForSeconds(Random.Range(minEatingTime, maxEatingTime));
         }
     }
 

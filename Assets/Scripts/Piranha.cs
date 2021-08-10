@@ -8,9 +8,8 @@ public class Piranha : Fish
 
     //Is turned on when in "Chase Mode"
     public bool ChaseModeEnabled = false;
-    public float minEatingTime = 5.0f;
-    public float maxEatingTime = 15.0f;
-
+    public int MaxEatingScore = 5;
+    public int MaxEatingRNG = 100;
     public List<FoodType> DoNotEatList = new List<FoodType> { FoodType.Cannibal, FoodType.Money };
 
     protected override IEnumerator DropCoins()
@@ -18,9 +17,10 @@ public class Piranha : Fish
         throw new System.NotImplementedException();
     }
 
-    protected override IEnumerator MoveToAndEat()
+    protected override void MoveToFood()
     {
-        for (; ; )
+        int RNGChoice = Random.Range(0, MaxEatingRNG);
+        if (RNGChoice <= MaxEatingScore)
         {
             ChaseModeEnabled = true;
             FoodList = GameObject.FindGameObjectsWithTag("Fish").ToList();
@@ -33,8 +33,6 @@ public class Piranha : Fish
                 }
 
             }
-
-            yield return new WaitForSeconds(Random.Range(minEatingTime, maxEatingTime));
         }
     }
 

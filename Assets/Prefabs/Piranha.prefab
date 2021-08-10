@@ -5110,5 +5110,6 @@ MonoBehaviour:
   minWaitTime: 0.5
   maxWaitTime: 10
   ChaseModeEnabled: 0
-  minEatingTime: 5
-  maxEatingTime: 15
+  MaxEatingScore: 15
+  MaxEatingRNG: 6000
+  DoNotEatList: 0200000003000000

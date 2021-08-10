@@ -7,7 +7,7 @@ public class BuyFishButton : MonoBehaviour
 {
     // Use this for initialization
     public GameObject fish;
-    public int cost;
+    public int cost = 0;
     public TextMeshProUGUI CostLabel;
     private Button button;
     

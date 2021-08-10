@@ -34,6 +34,8 @@ public abstract class Fish : MonoBehaviour
 
     protected bool MovingTowardsFood = false;
     public List<GameObject> FoodList = new List<GameObject>();
+    SpriteRenderer spriteRenderer;
+
     public int EatingRadius = 20;
     public int MinEatingRadius = 1;
 
@@ -45,9 +47,10 @@ public abstract class Fish : MonoBehaviour
         previousPosition = null;
 
         rigidbody2D = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         StartCoroutine(SelectDirection());
 
-        StartCoroutine(MoveToAndEat());
+        //StartCoroutine(MoveToAndEat());
         if(PreferredFood != FoodType.Cannibal && PreferredFood !=FoodType.Money)
         {
             StartCoroutine(DropCoins());
@@ -60,11 +63,16 @@ public abstract class Fish : MonoBehaviour
         time += Time.deltaTime / timeToReachTarget;
 
         ControlSpriteFacing();
-        MoveFish();
         if (ShouldTurnAround())
         {
             isFacingLeft = !isFacingLeft;
         }
+    }
+
+    private void FixedUpdate()
+    {
+        MoveFish();
+        MoveToFood();
     }
 
 
@@ -115,24 +123,38 @@ public abstract class Fish : MonoBehaviour
         return transform.position.x <= -10.85f || transform.position.x >= 10.85f;
     }
 
-    protected virtual IEnumerator MoveToAndEat()
+    protected virtual void MoveToFood()
     {
-        for (; ; )
+        FoodList = GameObject.FindGameObjectsWithTag("Food").ToList();
+        if (FoodList.Count > 0)
         {
-            FoodList= GameObject.FindGameObjectsWithTag("Food").ToList();
-            if (FoodList.Count > 0)
+            Food nearestFood = FindNearestPreferredFood(FoodList);
+            if (!MovingTowardsFood)
             {
-                Food nearestFood = FindNearestPreferredFood(FoodList);
-                if (!MovingTowardsFood)
-                {
-                    StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
-                }
-
+                StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
             }
 
-            yield return new WaitForEndOfFrame();
         }
     }
+
+    //protected virtual IEnumerator MoveToAndEat()
+    //{
+    //    for (; ; )
+    //    {
+    //        FoodList= GameObject.FindGameObjectsWithTag("Food").ToList();
+    //        if (FoodList.Count > 0)
+    //        {
+    //            Food nearestFood = FindNearestPreferredFood(FoodList);
+    //            if (!MovingTowardsFood)
+    //            {
+    //                StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
+    //            }
+
+    //        }
+
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //}
 
     //This needs to be fixed
     protected virtual IEnumerator MoveToTarget(GameObject OurGameObject, float distance)
@@ -239,7 +261,6 @@ public abstract class Fish : MonoBehaviour
 
     protected void ControlSpriteFacing()
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         //Flip sprite
         if (GetFacing() == Vector3.right)
         {
