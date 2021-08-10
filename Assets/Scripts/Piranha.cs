@@ -11,7 +11,7 @@ public class Piranha : Fish
     public float minEatingTime = 5.0f;
     public float maxEatingTime = 15.0f;
 
-
+    public List<FoodType> DoNotEatList = new List<FoodType> { FoodType.Cannibal, FoodType.Money };
 
     protected override IEnumerator DropCoins()
     {
@@ -47,7 +47,7 @@ public class Piranha : Fish
 
         foreach (Fish fish in foodList)
         {
-            if(fish.PreferredFood == FoodType.Cannibal)
+            if(DoNotEatList.Contains(fish.PreferredFood))
             {
                     PreferredFoodList.Remove(fish);
             }
@@ -65,7 +65,7 @@ public class Piranha : Fish
         if (collision.gameObject.CompareTag("Fish"))
         {
             Fish foodObject = collision.gameObject.GetComponent<Fish>();
-            if (foodObject.PreferredFood != FoodType.Cannibal && ChaseModeEnabled == true)
+            if (!DoNotEatList.Contains(foodObject.PreferredFood) && ChaseModeEnabled == true)
             {
                 ChaseModeEnabled = false;
                 DropMoneyOnEat();

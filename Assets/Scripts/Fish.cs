@@ -48,7 +48,7 @@ public abstract class Fish : MonoBehaviour
         StartCoroutine(SelectDirection());
 
         StartCoroutine(MoveToAndEat());
-        if(PreferredFood != FoodType.Cannibal)
+        if(PreferredFood != FoodType.Cannibal && PreferredFood !=FoodType.Money)
         {
             StartCoroutine(DropCoins());
         }

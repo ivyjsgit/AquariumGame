@@ -15,7 +15,7 @@ public class Money : MonoBehaviour
         Collect();
     }
 
-    protected void Collect()
+    public void Collect()
     {
         MoneyManager.Instance.SetMoney(MoneyManager.Instance.GetMoney() + value);
         PlaySound();
