@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3495985458967523905}
   - component: {fileID: 3495985458967523910}
-  - component: {fileID: 3495985458967523911}
   - component: {fileID: 3495985458967523908}
   - component: {fileID: 3495985458967523904}
+  - component: {fileID: 692413230815972928}
   m_Layer: 0
   m_Name: Silver Coin
   m_TagString: Money
@@ -85,51 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &3495985458967523911
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3495985458967523909}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: b79541892f21a4c20a8568ff8b55f29b, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.8905429, y: 2.1399999}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.9542096, y: 0.109903514}
-      - {x: 0.9058698, y: 0.3032629}
-      - {x: 0.6963971, y: 0.5610754}
-      - {x: 0.14854553, y: 1.0122473}
-      - {x: -0.012587272, y: 1.0928137}
-      - {x: -0.27039978, y: 1.0928137}
-      - {x: -0.5604388, y: 0.9155676}
-      - {x: -0.68934506, y: 0.7866613}
-      - {x: -0.7537982, y: 0.6416418}
-      - {x: -0.9310443, y: 0.19046992}
-      - {x: -0.94715756, y: 0.09379023}
-      - {x: -0.94715756, y: -0.4701746}
-      - {x: -0.76991147, y: -0.7279871}
-      - {x: -0.60877866, y: -0.87300664}
-      - {x: -0.30262634, y: -1.0019128}
-      - {x: -0.12538025, y: -1.0502527}
-      - {x: 0.39024475, y: -1.0502527}
-      - {x: 0.6963971, y: -0.87300664}
-      - {x: 0.8897565, y: -0.59908086}
-      - {x: 0.9542096, y: -0.4057215}
 --- !u!50 &3495985458967523908
 Rigidbody2D:
   serializedVersion: 4
@@ -165,3 +120,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 15
   PickupSound: {fileID: 0}
+--- !u!58 &692413230815972928
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3495985458967523909}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: b79541892f21a4c20a8568ff8b55f29b, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.04307258, y: 0.0035893917}
+  serializedVersion: 2
+  m_Radius: 0.91565657

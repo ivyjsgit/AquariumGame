@@ -4818,7 +4818,6 @@ GameObject:
   - component: {fileID: 9201090971931875301}
   - component: {fileID: 9201090971931875300}
   - component: {fileID: 9201090971931875303}
-  - component: {fileID: 9201090971931875299}
   - component: {fileID: 9201090970662812500}
   m_Layer: 0
   m_Name: Goldfish
@@ -4944,61 +4943,6 @@ MonoBehaviour:
   - {fileID: 2866502940677049033, guid: 69d14a991d66e4110b744ea16e2aa0e8, type: 3}
   - {fileID: 7325802768105016642, guid: 69d14a991d66e4110b744ea16e2aa0e8, type: 3}
   - {fileID: -4127332872836881914, guid: 69d14a991d66e4110b744ea16e2aa0e8, type: 3}
---- !u!60 &9201090971931875299
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9201090971931875302}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.4109793, y: 2.02}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.5836737, y: -0.7360162}
-      - {x: 0.7609198, y: -0.5587701}
-      - {x: 0.97039247, y: -0.2365045}
-      - {x: 1.3248847, y: -0.5909967}
-      - {x: 1.405451, y: -0.62322325}
-      - {x: 1.5988104, y: -0.60710996}
-      - {x: 1.7116034, y: -0.46209043}
-      - {x: 1.7116034, y: 0.39191347}
-      - {x: 1.6632636, y: 0.93976504}
-      - {x: 1.518244, y: 1.0203314}
-      - {x: 1.3409979, y: 1.0203314}
-      - {x: 1.2604315, y: 0.9881049}
-      - {x: 1.1637518, y: 0.84308535}
-      - {x: 0.88982606, y: 0.32746035}
-      - {x: 0.32586122, y: 0.4563666}
-      - {x: -0.544256, y: 0.47247988}
-      - {x: -1.0276544, y: 0.3596869}
-      - {x: -1.3176935, y: 0.2952338}
-      - {x: -1.6560724, y: 0.08576113}
-      - {x: -1.688299, y: 0.0051947236}
-      - {x: -1.688299, y: -0.30095762}
-      - {x: -1.6721857, y: -0.4137506}
-      - {x: -1.5916193, y: -0.54265684}
-      - {x: -1.4304864, y: -0.71990293}
-      - {x: -1.2532403, y: -0.8326959}
-      - {x: -0.947088, y: -0.96160215}
-      - {x: -0.64093566, y: -1.009942}
-      - {x: -0.012517691, y: -1.009942}
-      - {x: 0.24529481, y: -0.94548887}
-      - {x: 0.40642762, y: -0.86492246}
 --- !u!70 &9201090970662812500
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5012,6 +4956,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 7.1620564, y: 5.7296457}
+  m_Offset: {x: -0.0000003973643, y: 0.00000031789145}
+  m_Size: {x: 3.4954476, y: 3.163018}
   m_Direction: 0

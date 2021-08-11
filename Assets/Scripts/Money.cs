@@ -50,9 +50,4 @@ public class Money : MonoBehaviour
             PickupSound.Play();
         }
     }
-
-    public static implicit operator GameObject(Money v)
-    {
-        throw new NotImplementedException();
-    }
 }

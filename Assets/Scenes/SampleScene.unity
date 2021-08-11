@@ -2470,5 +2470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Goldfish
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9201090971931875302, guid: 837ef0e31e6df48bfa93f679d53c66aa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 837ef0e31e6df48bfa93f679d53c66aa, type: 3}

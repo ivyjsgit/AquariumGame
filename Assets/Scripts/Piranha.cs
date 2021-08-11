@@ -23,35 +23,37 @@ public class Piranha : Fish
         if (RNGChoice <= MaxEatingScore)
         {
             ChaseModeEnabled = true;
-            FoodList = GameObject.FindGameObjectsWithTag("Fish").ToList();
-            if (FoodList.Count > 0)
+
+            Collider2D[] collisions = Physics2D.OverlapCircleAll(gameObject.transform.position, EatingRadius);
+            List<Fish> FoundFishList = new List<Fish>();
+
+            foreach(Collider2D collision in collisions)
             {
-                Fish nearestFood = FindNearestFish(FoodList);
+                if (collision.gameObject.CompareTag("Fish"))
+                {
+                    Fish fish = collision.gameObject.GetComponent<Fish>();
+                    if (ShouldEatFish(fish))
+                    {
+                        FoundFishList.Add(fish);
+                    }
+                }
+            }
+
+            if (FoundFishList.Count > 0)
+            {
+                Fish nearestFish = FindNearestFish(FoundFishList);
                 if (!MovingTowardsFood)
                 {
-                    StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
+                    StartCoroutine(MoveToTarget(nearestFish.gameObject, 2.0f));
                 }
-
             }
         }
     }
 
-    private Fish FindNearestFish(List<GameObject> gameObjectsList)
+    private Fish FindNearestFish(List<Fish> fishList)
     {
-
-        List<Fish> foodList = gameObjectsList.Select(go => go.GetComponent<Fish>()).ToList();
-        List<Fish> PreferredFoodList = new List<Fish>(); //Clone the list
-
-
-        foreach (Fish fish in foodList)
-        {
-            //Only eat Goldfish that are tiny
-            if (ShouldEatFish(fish))
-            {
-                PreferredFoodList.Add(fish);
-            }
-        }
-        List<GameObject> PrefFoodListAsGO = PreferredFoodList.Select(food => food.gameObject).ToList();
+        List<GameObject> PrefFoodListAsGO = fishList.Select(food => food.gameObject).ToList();
+        PrefFoodListAsGO = PrefFoodListAsGO.FindAll(go => go != null);
         return FindNearestGameObject(PrefFoodListAsGO).GetComponent<Fish>();
 
     }

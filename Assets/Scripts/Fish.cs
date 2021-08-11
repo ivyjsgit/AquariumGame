@@ -82,7 +82,8 @@ public abstract class Fish : MonoBehaviour
     {
         if (rigidbody2D != null && !MovingTowardsFood)
         {
-            Vector2 newPosition = transform.position;
+            var CurrentPosition = transform.position;
+            Vector2 newPosition = CurrentPosition;
             if (isFacingLeft)
             {
                 newPosition.x += (-Vector3.right * speed * Time.deltaTime).x;
@@ -91,7 +92,7 @@ public abstract class Fish : MonoBehaviour
             {
                 newPosition.x += (Vector3.right * speed * Time.deltaTime).x;
             }
-            previousPosition = transform.position;
+            previousPosition = CurrentPosition;
 
             transform.position = (newPosition);
         }
@@ -134,40 +135,21 @@ public abstract class Fish : MonoBehaviour
             {
                 StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
             }
-
         }
     }
-
-    //protected virtual IEnumerator MoveToAndEat()
-    //{
-    //    for (; ; )
-    //    {
-    //        FoodList= GameObject.FindGameObjectsWithTag("Food").ToList();
-    //        if (FoodList.Count > 0)
-    //        {
-    //            Food nearestFood = FindNearestPreferredFood(FoodList);
-    //            if (!MovingTowardsFood)
-    //            {
-    //                StartCoroutine(MoveToTarget(nearestFood.gameObject, 2.0f));
-    //            }
-
-    //        }
-
-    //        yield return new WaitForEndOfFrame();
-    //    }
-    //}
 
     //This needs to be fixed
     protected virtual IEnumerator MoveToTarget(GameObject OurGameObject, float distance)
     {
         MovingTowardsFood = true;
         float ObjectDistance = GetGameObjectDistance(OurGameObject);
-        Debug.Log(ObjectDistance);
+        //Debug.Log(ObjectDistance);
 
         while (OurGameObject != null &&  ObjectDistance < EatingRadius && ObjectDistance > MinEatingRadius)
         {
             float step = speed * Time.deltaTime;
             previousPosition = transform.position;
+
             transform.position = Vector2.MoveTowards(transform.position, OurGameObject.transform.position, speed*Time.deltaTime) ;
             yield return new WaitForEndOfFrame();
             ObjectDistance = GetGameObjectDistance(OurGameObject);
