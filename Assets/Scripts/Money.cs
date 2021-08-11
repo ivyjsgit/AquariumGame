@@ -9,10 +9,23 @@ public class Money : MonoBehaviour
 
     public int value;
     public AudioSource PickupSound;
+    private Rigidbody2D ourRB;
 
+    private void Start()
+    {
+        ourRB = GetComponent<Rigidbody2D>();   
+    }
     private void OnMouseDown()
     {
         Collect();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Fish"))
+        {
+            ourRB.constraints = RigidbodyConstraints2D.None;
+        }
     }
 
     public void Collect()

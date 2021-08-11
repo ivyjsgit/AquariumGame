@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoneyManager : Singleton<MoneyManager>
 {
     [SerializeField] private int money = 0;
+    [SerializeField] private int MaxMoney = 999999;
 
     public List<Money> Denominations;
 
@@ -31,6 +32,13 @@ public class MoneyManager : Singleton<MoneyManager>
         {
             throw new System.ArgumentOutOfRangeException("You cannot have negative money!");
         }
-        this.money = money;
+        if(this.money + money <= MaxMoney)
+        {
+            this.money = money;
+        }
+        else
+        {
+            this.money = MaxMoney;
+        }
     }
 }

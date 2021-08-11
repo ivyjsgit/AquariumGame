@@ -100,6 +100,7 @@ MonoBehaviour:
   HealthRestored: 0
   TimeAlive: 0
   DespawnTime: 5
+  GrowthBonus: 60
 --- !u!50 &3041251996603248766
 Rigidbody2D:
   serializedVersion: 4

@@ -40,16 +40,16 @@ public class Piranha : Fish
     {
 
         List<Fish> foodList = gameObjectsList.Select(go => go.GetComponent<Fish>()).ToList();
-        List<Fish> PreferredFoodList = foodList.ToList(); //Clone the list
+        List<Fish> PreferredFoodList = new List<Fish>(); //Clone the list
 
 
         foreach (Fish fish in foodList)
         {
-            if(DoNotEatList.Contains(fish.PreferredFood))
+            //Only eat Goldfish that are tiny
+            if (ShouldEatFish(fish))
             {
-                    PreferredFoodList.Remove(fish);
+                PreferredFoodList.Add(fish);
             }
-
         }
         List<GameObject> PrefFoodListAsGO = PreferredFoodList.Select(food => food.gameObject).ToList();
         return FindNearestGameObject(PrefFoodListAsGO).GetComponent<Fish>();
@@ -63,13 +63,26 @@ public class Piranha : Fish
         if (collision.gameObject.CompareTag("Fish"))
         {
             Fish foodObject = collision.gameObject.GetComponent<Fish>();
-            if (!DoNotEatList.Contains(foodObject.PreferredFood) && ChaseModeEnabled == true)
+            if (ShouldEatFish(foodObject) && ChaseModeEnabled == true)
             {
                 ChaseModeEnabled = false;
                 DropMoneyOnEat();
                 Destroy(collision.gameObject);
             }
         }
+    }
+
+    private bool ShouldEatFish(Fish fish)
+    {
+        if (fish.GetComponent<RegularFish>() != null)
+        {
+            RegularFish regularFish = fish.GetComponent<RegularFish>();
+            if (regularFish.GrowthStage == 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void DropMoneyOnEat()

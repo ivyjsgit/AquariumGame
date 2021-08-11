@@ -9,6 +9,7 @@ public class Food : MonoBehaviour
     public int HealthRestored;
     public float TimeAlive = 0.0f;
     public float DespawnTime = 5.0f;
+    public float GrowthBonus = 0.0f;
 
     private float StartTime;
 
@@ -37,6 +38,15 @@ public class Food : MonoBehaviour
         if (TimeAlive >= DespawnTime)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Fish"))
+        {
+            Fish fish = collision.gameObject.GetComponent<Fish>();
+            fish.FoodTimer += GrowthBonus;
         }
     }
 

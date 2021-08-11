@@ -18,7 +18,8 @@ public abstract class Fish : MonoBehaviour
     public float speed = 3.0f;
 
 
-    float time;
+    public float FoodTimer = 0.0f;
+    public int GrowthStage = 0;
 
     float timeToReachTarget;
 
@@ -34,7 +35,7 @@ public abstract class Fish : MonoBehaviour
 
     protected bool MovingTowardsFood = false;
     public List<GameObject> FoodList = new List<GameObject>();
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
 
     public int EatingRadius = 20;
     public int MinEatingRadius = 1;
@@ -60,7 +61,7 @@ public abstract class Fish : MonoBehaviour
     // Update is called once per frame
     protected void Update() {
 
-        time += Time.deltaTime / timeToReachTarget;
+        FoodTimer += Time.deltaTime;
 
         ControlSpriteFacing();
         if (ShouldTurnAround())
@@ -299,6 +300,11 @@ public abstract class Fish : MonoBehaviour
             }
         }
 
+    }
+
+    public void EatFood(float TimeBonus)
+    {
+        FoodTimer += TimeBonus;
     }
 
     protected abstract IEnumerator DropCoins();
