@@ -100,7 +100,7 @@ MonoBehaviour:
   HealthRestored: 0
   TimeAlive: 0
   DespawnTime: 5
-  GrowthBonus: 60
+  GrowthBonus: 5
 --- !u!50 &3041251996603248766
 Rigidbody2D:
   serializedVersion: 4
@@ -135,6 +135,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.048552513, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.0340774

@@ -33,9 +33,8 @@ public class MoneyEater : Fish
     private Money FindNearestMoney(List<GameObject> gameObjectsList)
     {
 
-        List<Money> foodList = gameObjectsList.Select(go => go.GetComponent<Money>()).ToList();
-        List<Money> PreferredFoodList = foodList.ToList(); //Clone the list
-        List<GameObject> PrefFoodListAsGO = PreferredFoodList.Select(food => food.gameObject).ToList();
+        var foodList = gameObjectsList.Select(go => go.GetComponent<Money>());
+        List<GameObject> PrefFoodListAsGO = foodList.Select(food => food.gameObject).ToList();
 
         return FindNearestGameObject(PrefFoodListAsGO).GetComponent<Money>();
 

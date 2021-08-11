@@ -26,7 +26,6 @@ public class RegularFish : Fish
                 List<Money> CoinsToSpawn = new List<Money>();
                 var Score = happiness + Random.Range(-5, 50);
 
-                Debug.Log($"Score{Score}");
                 if(Score>=130 && GrowthStage == 2)
                 {
                     CoinsToSpawn.Add(MoneyManager.Instance.Denominations[2]);
@@ -76,7 +75,7 @@ public class RegularFish : Fish
         spriteRenderer.sprite = GrowthSprites[level];
 
         //Refresh collider
-        Destroy(GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<PolygonCollider2D>();
+        Destroy(GetComponent<CapsuleCollider2D>());
+        gameObject.AddComponent<CapsuleCollider2D>();
     }
 }

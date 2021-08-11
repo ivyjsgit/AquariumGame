@@ -46,7 +46,7 @@ public class Food : MonoBehaviour
         if (collision.gameObject.CompareTag("Fish"))
         {
             Fish fish = collision.gameObject.GetComponent<Fish>();
-            fish.FoodTimer += GrowthBonus;
+            fish.EatFood(GrowthBonus);
         }
     }
 
