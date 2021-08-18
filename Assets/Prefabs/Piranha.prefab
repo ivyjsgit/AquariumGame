@@ -4935,8 +4935,9 @@ MonoBehaviour:
   FoodList: []
   EatingRadius: 20
   MinEatingRadius: 1
-  minWaitTime: 0.5
+  minWaitTime: 3
   maxWaitTime: 10
+  FishType: 1
   ChaseModeEnabled: 0
   MaxEatingScore: 15
   MaxEatingRNG: 6000

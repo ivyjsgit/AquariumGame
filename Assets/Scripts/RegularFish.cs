@@ -53,7 +53,7 @@ public class RegularFish : Fish
     }
     private void LevelUp()
     {
-        if (FoodTimer >= 900 && GrowthStage == 1)
+        if (FoodTimer >= 500 && GrowthStage == 1)
         {
             Debug.Log("Level 3!");
             SetLevel(2);

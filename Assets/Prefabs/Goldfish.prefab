@@ -4935,8 +4935,9 @@ MonoBehaviour:
   FoodList: []
   EatingRadius: 6
   MinEatingRadius: 1
-  minWaitTime: 0.5
+  minWaitTime: 2
   maxWaitTime: 10
+  FishType: 0
   minCoinWaitTime: 5
   maxCoinWaitTime: 6
   GrowthSprites:

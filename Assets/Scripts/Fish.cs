@@ -43,8 +43,12 @@ public abstract class Fish : MonoBehaviour
     public float minWaitTime;
     public float maxWaitTime;
 
+    public FishType FishType;
+
     protected void Start()
     {
+        FishManager.Instance.AddFish(FishType);
+
         previousPosition = null;
 
         rigidbody2D = GetComponent<Rigidbody2D>();
@@ -64,9 +68,13 @@ public abstract class Fish : MonoBehaviour
         FoodTimer += Time.deltaTime;
 
         ControlSpriteFacing();
-        if (ShouldTurnAround())
+        if (ShouldTurnAroundLeft())
         {
-            isFacingLeft = !isFacingLeft;
+            isFacingLeft = false;
+        }
+        else if (ShouldTurnAroundRight())
+        {
+            isFacingLeft = true;
         }
     }
 
@@ -104,7 +112,8 @@ public abstract class Fish : MonoBehaviour
     {
         for (; ; )
         {
-            if (!ShouldTurnAround())
+
+            if(!ShouldTurnAround())
             {
                 isFacingLeft = (Random.value > 0.5);
             }
@@ -118,7 +127,15 @@ public abstract class Fish : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, EatingRadius);
     }
 
+    protected bool ShouldTurnAroundLeft()
+    {
+        return transform.position.x <= -10.85f;
+    }
 
+    protected bool ShouldTurnAroundRight()
+    {
+       return transform.position.x >= 10.85f;
+    }
 
     protected bool ShouldTurnAround()
     {
@@ -287,6 +304,11 @@ public abstract class Fish : MonoBehaviour
     public void EatFood(float TimeBonus)
     {
         FoodTimer += TimeBonus;
+    }
+
+    private void OnDestroy()
+    {
+        FishManager.Instance.RemoveFish(FishType); 
     }
 
     protected abstract IEnumerator DropCoins();
