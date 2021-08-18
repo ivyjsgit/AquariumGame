@@ -12,7 +12,7 @@ public abstract class Fish : MonoBehaviour
 
 
 
-    [SerializeField] public FoodType PreferredFood = FoodType.Regular;
+    [SerializeField] public List<FoodType> PreferredFood = new List<FoodType> { FoodType.Regular };
 
 
     public float speed = 3.0f;
@@ -56,7 +56,7 @@ public abstract class Fish : MonoBehaviour
         StartCoroutine(SelectDirection());
 
         //StartCoroutine(MoveToAndEat());
-        if(PreferredFood != FoodType.Cannibal && PreferredFood !=FoodType.Money)
+        if(!(FishType == FishType.Piranha || FishType == FishType.Moneyfish))
         {
             StartCoroutine(DropCoins());
         }
@@ -231,14 +231,9 @@ public abstract class Fish : MonoBehaviour
 
     protected bool IsFoodPreferred(Food food)
     {
-        FoodType? CurrentFoodType = null;
-        if(food is PlainFood)
+        if (food != null)
         {
-            CurrentFoodType = FoodType.Regular;
-        }
-        if (CurrentFoodType != null)
-        {
-            return CurrentFoodType == PreferredFood;
+            return PreferredFood.Contains(food.foodType);
         }
         else
         {

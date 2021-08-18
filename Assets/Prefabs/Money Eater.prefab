@@ -4925,7 +4925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df912c49d8bb470c8c87fe2838531a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PreferredFood: 3
+  PreferredFood: 03000000
   speed: 3
   FoodTimer: 0
   GrowthStage: 0

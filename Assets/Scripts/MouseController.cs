@@ -7,11 +7,15 @@ public class MouseController : Singleton<MouseController>
 {
     // Start is called before the first frame update
 
-    public GameObject food;
+
+    public Food food;
+    public List<Food> ObtainedFood;
+
     public List<String> TagsExcludedFromFoodSpawning = new List<String>();
 
     void Start()
     {
+        ObtainedFood  = new List<Food> { food };
         Debug.Log(Camera.main);
         Debug.Log(Input.mousePosition);
     }
@@ -36,5 +40,16 @@ public class MouseController : Singleton<MouseController>
                 //}
             }
         }
+    }
+
+    public void ObtainFood(Food food)
+    {
+        ObtainedFood.Add(food);
+        this.food = food;
+    }
+
+    public bool AlreadyHasFood(Food food)
+    {
+        return ObtainedFood.Contains(food);
     }
 }

@@ -11,6 +11,8 @@ public class Food : MonoBehaviour
     public float DespawnTime = 5.0f;
     public float GrowthBonus = 0.0f;
 
+    public FoodType foodType = FoodType.Regular;
+
     private float StartTime;
 
 

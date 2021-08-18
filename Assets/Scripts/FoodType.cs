@@ -1,5 +1,5 @@
 ﻿using System;
 public enum FoodType
 {
-    Regular, Spicy, Cannibal, Money
+    Regular, Spicy, Burger, Cannibal, Money
 }
